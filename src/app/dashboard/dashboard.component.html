@@ -1,0 +1,60 @@
+<h1 class="page-title">Nasa Collection</h1>
+<button class="add-new-item-button">
+  <a routerLink="/search">+ Add New Item</a>
+</button>
+
+<div class="collection-container">
+  <div *ngFor="let nasaItem of nasaCollection" class="collection-item">
+    <img class="image" src="{{nasaItem.thumbnailUrl}}" alt="{{nasaItem.title}}-thumbnail" (click)="openReviewModal(nasaItem)"/>
+    <p class="author">{{nasaItem.author}}</p>
+    <p class="date">{{nasaItem.date}}</p>
+    <h2 class="title">{{nasaItem.title}}</h2>
+    <p class="description">{{nasaItem.description}}</p>
+    <div class="actions-container">
+      <button class="button love">Love</button>
+      <button class="button delete">Delete</button>
+      <button class="button edit" (click)="openEditModal(nasaItem)">Edit</button>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="reviewingNasaItem" class="reviewing modal">
+  <div class="modal-background">
+    <h2 class="modal-title">{{reviewingNasaItem.title}}</h2>
+    <img class="image" src="{{reviewingNasaItem.thumbnailUrl}}" alt="{{reviewingNasaItem.title}}-thumbnail"/>
+    <button class="button close" (click)="closeReviewModal()">Close</button>
+  </div>
+</div>
+
+<div *ngIf="editingNasaItem" class="editing modal">
+  <div class="modal-background">
+    <h2 class="title">Edit</h2>
+    <form>
+      <label for="title">Title</label>
+      <input id="title" name="title"
+             [(ngModel)]="editingNasaItem.title" type="text"/>
+
+      <label for="description">Description</label>
+      <input id="description" name="description"
+             [(ngModel)]="editingNasaItem.description" type="text"/>
+
+      <label>Type</label>
+      <select>
+        <option>Image</option>
+      </select>
+
+      <label class="required" for="thumbnail-url">Link preview image url</label>
+      <input id="thumbnail-url" name="thumbnail-url" type="text"
+             [(ngModel)]="editingNasaItem.thumbnailUrl" required #mediaThumbnailUrl = "ngModel"/>
+
+      <label class="required" for="video-url">Link file url</label>
+      <input id="video-url" name="video-url" type="text"
+             [(ngModel)]="editingNasaItem.videoUrl" required #videoUrl = "ngModel"/>
+    </form>
+
+    <button class="button save" [disabled]="!mediaThumbnailUrl.valid || !videoUrl.valid"
+            (click)="saveNasaItem(editingNasaItem)">Save</button>
+    <button class="button close" (click)="closeEditModal()">Close</button>
+  </div>
+</div>
+

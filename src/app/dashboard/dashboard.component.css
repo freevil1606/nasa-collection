@@ -1,0 +1,198 @@
+/*MAIN PAGE*/
+:host > * {
+  margin-left: 45px;
+  margin-right: 45px;
+}
+
+:host > *:first-child {
+ margin-top: 30px;
+}
+
+:host > *:last-child {
+  margin-bottom: 30px;
+}
+
+.page-title {
+  color: gray;
+  font-size: 45px;
+  margin-bottom: 20px;
+}
+
+.add-new-item-button {
+  background: rebeccapurple;
+  color: white;
+  font-size: 18px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  margin-bottom: 25px;
+  border: none;
+}
+
+.add-new-item-button a {
+  color: white;
+  text-decoration: none;
+}
+
+.collection-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-content: space-between;
+  column-gap: 20px;
+  row-gap: 30px;
+}
+
+.collection-container .collection-item {
+  flex: 0 1 30%;
+  display: grid;
+  grid-template-rows: repeat(4, min-content);
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-areas:
+    'image image'
+    'author date'
+    'title title'
+    'desc desc'
+    'buttons buttons';
+}
+
+.collection-container .collection-item .image {
+  grid-area: image;
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+}
+
+.collection-container .collection-item .author,
+.collection-container .collection-item .date {
+  color: gray;
+  font-size: 15px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.collection-container .collection-item .author {
+  grid-area: author;
+}
+
+.collection-container .collection-item .date {
+  grid-area: date;
+  text-align: right;
+}
+
+.collection-container .collection-item .title {
+  grid-area: title;
+  font-size: 36px;
+  margin-top: 10px;
+  margin-bottom: 15px;
+}
+
+.collection-container .collection-item .description {
+  grid-area: desc;
+  font-size: 18px;
+  color: dimgray;
+  margin-bottom: 10px;
+}
+
+.collection-container .collection-item .actions-container {
+  grid-area: buttons;
+  display: flex;
+  align-items: center;
+  column-gap: 4px;
+}
+
+.collection-container .collection-item .actions-container .button {
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 2px solid darkgray;
+  background: white;
+  color: dimgray;
+}
+/*END MAIN PAGE*/
+
+/*COMMON MODAL*/
+.modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  margin-left: -45px;
+}
+
+.modal .modal-background {
+  background: white;
+  width: max-content;
+  height: min-content;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+}
+
+.modal .modal-background .modal-title {
+  font-size: 36px;
+}
+
+.modal .modal-background .button {
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 2px solid darkgray;
+  background: white;
+  color: dimgray;
+  height: 35px;
+}
+
+.modal .modal-background .button[disabled] {
+  opacity: 0.3;
+}
+/*END COMMON MODAL*/
+
+/*REVIEWING MODAL*/
+.reviewing.modal .modal-background .image {
+  width: 40vw;
+  height: auto;
+  border-radius: 6px;
+}
+/*END REVIEWING MODAL*/
+
+/*EDITING MODAL*/
+.editing.modal .modal-background .button.save {
+  background: dimgray;
+  color: white;
+  border: none;
+}
+
+.editing.modal .modal-background form {
+  display: flex;
+  flex-direction: column;
+  row-gap: 5px;
+  width: 50vw;
+}
+
+.editing.modal .modal-background form {
+  display: flex;
+  flex-direction: column;
+  row-gap: 5px;
+}
+
+.editing.modal .modal-background form label {
+  font-size: 14px;
+}
+
+.editing.modal .modal-background form label.required::after {
+  content: " *";
+  font-size: 14px;
+  color: red;
+}
+
+.editing.modal .modal-background form select,
+.editing.modal .modal-background form input {
+  font-size: 14px;
+  padding: 4px;
+  margin-bottom: 15px;
+}
+/*END EDITING MODAL*/
